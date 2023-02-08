@@ -18,7 +18,7 @@ scikit-image>=0.19
 timm==0.4.12
 transformers==4.19.2
 torch==1.13.0
-torchvision==0.8.1
+torchvision==0.13.0
 einops
 jsonmerge
 clean-fid
