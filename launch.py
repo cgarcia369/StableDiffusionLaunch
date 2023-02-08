@@ -69,7 +69,7 @@ def check_run_python(code):
 
 def git_clone(url, dir, name, commithash=None):
     # TODO clone into temporary dir and move if successful
-
+ 
     if os.path.exists(dir):
         if commithash is None:
             return
@@ -79,7 +79,6 @@ def git_clone(url, dir, name, commithash=None):
             return
 
         run(f'"{git}" -C {dir} fetch', f"Fetching updates for {name}...", f"Couldn't fetch {name}")
-        run(f'"{git}" -C {dir} fetch', f"Fetching updates for {name}...", f"Couldn't fetch {name}")
         run(f'"{git}" -C {dir} clean --force -d -x', f"Cleaning", f"Couldn't Cleaning commit {commithash} for {name}")
         run(f'"{git}" -C {dir} reset --hard', f"Reseting", f"Couldn't Reset commit {commithash} for {name}")
         run(f'"{git}" -C {dir} checkout -f {commithash}', f"Checking out commit for {name} with hash: {commithash}...", f"Couldn't checkout commit {commithash} for {name}")
@@ -88,6 +87,8 @@ def git_clone(url, dir, name, commithash=None):
     run(f'"{git}" clone "{url}" "{dir}"', f"Cloning {name} into {dir}...", f"Couldn't clone {name}")
 
     if commithash is not None:
+        run(f'"{git}" -C {dir} clean --force -d -x', f"Cleaning", f"Couldn't Cleaning commit {commithash} for {name}")
+        run(f'"{git}" -C {dir} reset --hard', f"Reseting", f"Couldn't Reset commit {commithash} for {name}")
         run(f'"{git}" -C {dir} checkout {commithash}', None, "Couldn't checkout {name}'s hash: {commithash}")
 
         
