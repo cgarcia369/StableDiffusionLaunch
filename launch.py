@@ -81,6 +81,7 @@ def git_clone(url, dir, name, commithash=None):
         run(f'"{git}" -C {dir} fetch', f"Fetching updates for {name}...", f"Couldn't fetch {name}")
         run(f'"{git}" -C {dir} clean --force -d -x', f"Cleaning", f"Couldn't Cleaning commit {commithash} for {name}")
         run(f'"{git}" -C {dir} reset --hard', f"Reseting", f"Couldn't Reset commit {commithash} for {name}")
+        run(f'"{git}" -C {dir} stash', f"Stashing", f"Couldn't Stashing commit {commithash} for {name}")
         run(f'"{git}" -C {dir} checkout -f {commithash}', f"Checking out commit for {name} with hash: {commithash}...", f"Couldn't checkout commit {commithash} for {name}")
         return
 
@@ -89,6 +90,7 @@ def git_clone(url, dir, name, commithash=None):
     if commithash is not None:
         run(f'"{git}" -C {dir} clean --force -d -x', f"Cleaning", f"Couldn't Cleaning commit {commithash} for {name}")
         run(f'"{git}" -C {dir} reset --hard', f"Reseting", f"Couldn't Reset commit {commithash} for {name}")
+        run(f'"{git}" -C {dir} stash', f"Stashing", f"Couldn't Stashing commit {commithash} for {name}")
         run(f'"{git}" -C {dir} checkout {commithash}', None, "Couldn't checkout {name}'s hash: {commithash}")
 
         
