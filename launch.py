@@ -91,7 +91,7 @@ def git_clone(url, dir, name, commithash=None):
         run(f'"{git}" -C {dir} clean --force -d -x', f"Cleaning", f"Couldn't Cleaning commit {commithash} for {name}")
         run(f'"{git}" -C {dir} reset --hard', f"Reseting", f"Couldn't Reset commit {commithash} for {name}")
         run(f'"{git}" -C {dir} stash', f"Stashing", f"Couldn't Stashing commit {commithash} for {name}")
-        run(f'"{git}" -C {dir} checkout {commithash}', None, "Couldn't checkout {name}'s hash: {commithash}")
+        run(f'"{git}" -C {dir} checkout -f {commithash}', None, "Couldn't checkout {name}'s hash: {commithash}")
 
         
 def version_check(commit):
